@@ -8,8 +8,9 @@ import CreateContent from "./component/CreateContent";
 class App extends Component {
   constructor(props) {
     super(props);
+    console.log();
     this.state = {
-      //state값이 바뀌면 렌더가 다시 실행
+      //state값이  바뀌면   렌더가 다시 실행
       mode: "WELCOME",
       selected_content_id: 2,
       WELCOME: { title: "welcome!!", desc: "HELLO REACT!!!" },
