@@ -1,10 +1,10 @@
-import "./App.css";
-import Subject from "./Subject";
-import TOC from "./TOC";
-import Content from "./Content";
-
+import "./CSS/App.css";
+import Subject from "./component/Subject";
+import TOC from "./component/TOC";
+import ReadContent from "./component/ReadContent";
 import React, { Component } from "react";
-
+import Control from "./component/Control";
+import CreateContent from "./component/CreateContent";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -15,9 +15,9 @@ class App extends Component {
       WELCOME: { title: "welcome!!", desc: "HELLO REACT!!!" },
       subject: { title: "WEB", sub: "world wide web" },
       contents: [
-        { id: 1, title: "HTML", desc: "HTML is hypertext..." },
-        { id: 2, title: "CSS", desc: "CSS is for design..." },
-        { id: 3, title: "JS", desc: "JS is for interactive..." },
+        { id: 1, title: "김동석", desc: "섹스보지털" },
+        { id: 2, title: "강한얼", desc: "섹스" },
+        { id: 3, title: "이민혁", desc: "쌉돼지" },
       ],
     };
   }
@@ -26,10 +26,12 @@ class App extends Component {
     console.log(this.state.contents[0].id);
     console.log("랜더되고있다능");
     let _title,
-      _desc = null;
+      _desc,
+      _article = null;
     if (this.state.mode === "WELCOME") {
       _title = this.state.WELCOME.title;
       _desc = this.state.WELCOME.desc;
+      _article = <ReadContent title={_title} desc={_desc}></ReadContent>;
     } else if (this.state.mode === "READ") {
       let i = 0;
       while (i < this.state.contents.length) {
@@ -43,6 +45,9 @@ class App extends Component {
         }
         i = i + 1;
       }
+      _article = <ReadContent title={_title} desc={_desc}></ReadContent>;
+    } else if (this.state.mode === "CREATE") {
+      _article = <CreateContent></CreateContent>;
     }
     console.log("render", this);
     return (
@@ -68,7 +73,13 @@ class App extends Component {
             }.bind(this)}
             data={this.state.contents}
           ></TOC>
-          <Content title={_title} desc={_desc}></Content>
+          <Control
+            onChangeMode={function (_mode) {
+              this.setState({ mode: _mode });
+            }.bind(this)}
+          ></Control>
+
+          {_article}
         </header>
       </div>
     );
