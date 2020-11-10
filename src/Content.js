@@ -7,6 +7,8 @@ class Content extends Component {
       <article>
         <h2>{this.props.title}</h2>
         {this.props.desc}
+        {console.log(this.props.title)}
+        {console.log(this.props.desc)}
       </article>
     );
   }

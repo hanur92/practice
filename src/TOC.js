@@ -14,7 +14,7 @@ class TOC extends Component {
               e.preventDefault();
               this.props.onChangePage(e.target.dataset.id);
             }.bind(this)}
-            href={i + "/content/" + data[i].id}
+            href={"/content/" + data[i].id}
           >
             {data[i].title}
           </a>
