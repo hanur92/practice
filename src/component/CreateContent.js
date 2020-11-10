@@ -6,9 +6,25 @@ class CreateContent extends Component {
     return (
       <article>
         <h2>CreateContent</h2>
-        {/* {this.props.desc}
-        {console.log(this.props.title)}
-        {console.log(this.props.desc)} */}
+        <form
+          action="/create_process"
+          method="post"
+          onSubmit={function (e) {
+            e.preventDefault();
+            alert("submit TEXT");
+            this.props.onSubmit();
+          }.bind(this)}
+        >
+          <p>
+            <input type="text" name="title" placeholder="title"></input>
+          </p>
+          <p>
+            <textarea name="desc" placeholder="description"></textarea>
+          </p>
+          <p>
+            <input type="submit" name="전송"></input>
+          </p>
+        </form>
       </article>
     );
   }

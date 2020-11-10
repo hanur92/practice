@@ -11,7 +11,7 @@ class App extends Component {
     console.log();
     this.state = {
       //state값이  바뀌면   렌더가 다시 실행
-      mode: "WELCOME",
+      mode: "CREATE",
       selected_content_id: 2,
       WELCOME: { title: "welcome!!", desc: "HELLO REACT!!!" },
       subject: { title: "WEB", sub: "world wide web" },
@@ -48,7 +48,13 @@ class App extends Component {
       }
       _article = <ReadContent title={_title} desc={_desc}></ReadContent>;
     } else if (this.state.mode === "CREATE") {
-      _article = <CreateContent></CreateContent>;
+      _article = (
+        <CreateContent
+          onSubmit={function (_title, _desc) {
+            //add content to this.state.contents
+          }.bind(this)}
+        ></CreateContent>
+      );
     }
     console.log("render", this);
     return (
