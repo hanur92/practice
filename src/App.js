@@ -8,7 +8,7 @@ import CreateContent from "./component/CreateContent";
 class App extends Component {
   constructor(props) {
     super(props);
-    console.log();
+    this.max_content_id = 3;
     this.state = {
       //state값이  바뀌면   렌더가 다시 실행
       mode: "CREATE",
@@ -24,8 +24,7 @@ class App extends Component {
   }
   //랜더보다 먼저 실행되며 초기화하는 코드
   render() {
-    console.log(this.state.contents[0].id);
-    console.log("랜더되고있다능");
+    console.log("APP RENDER");
     let _title,
       _desc,
       _article = null;
@@ -51,6 +50,20 @@ class App extends Component {
       _article = (
         <CreateContent
           onSubmit={function (_title, _desc) {
+            console.log(_title, _desc);
+            this.max_content_id = this.max_content_id + 1;
+            //배열일시 Array.from(this.state.contents);복사
+            //객체일시 Object.assign({},대상객체); 객체복사
+            let result = this.state.contents.concat({
+              //push는 오리지널을 변경하므로 concat사용(성능개선)
+              id: this.max_content_id,
+              title: _title,
+              contents: _desc,
+            });
+            this.setState({
+              contents: result,
+            });
+            console.log("---콘텐츠확인---", this.state.contents);
             //add content to this.state.contents
           }.bind(this)}
         ></CreateContent>
@@ -85,7 +98,6 @@ class App extends Component {
               this.setState({ mode: _mode });
             }.bind(this)}
           ></Control>
-
           {_article}
         </header>
       </div>

@@ -4,7 +4,7 @@ const handleClick = () => {
 };
 class Subject extends Component {
   render() {
-    console.log("Subject", this);
+    console.log("SUBJECT RENDER");
     return (
       <header>
         <h1>

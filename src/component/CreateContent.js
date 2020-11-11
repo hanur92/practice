@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class CreateContent extends Component {
   render() {
-    console.log("Content", this);
+    console.log("CREATE CONTENT RENDER");
     return (
       <article>
         <h2>CreateContent</h2>
@@ -11,8 +11,8 @@ class CreateContent extends Component {
           method="post"
           onSubmit={function (e) {
             e.preventDefault();
+            this.props.onSubmit(e.target.title.value, e.target.desc.value);
             alert("submit TEXT");
-            this.props.onSubmit();
           }.bind(this)}
         >
           <p>
