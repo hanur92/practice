@@ -13,7 +13,7 @@ class App extends Component {
     this.max_content_id = 3;
     this.state = {
       //state값이  바뀌면   렌더가 다시 실행
-      mode: "CREATE",
+      mode: "WELCOME",
       selected_content_id: 2,
       WELCOME: { title: "welcome!!", desc: "HELLO REACT!!!" },
       subject: { title: "WEB", sub: "world wide web" },
@@ -58,14 +58,22 @@ class App extends Component {
             this.max_content_id = this.max_content_id + 1;
             //배열일시 Array.from(this.state.contents);복사
             //객체일시 Object.assign({},대상객체); 객체복사
-            let result = this.state.contents.concat({
-              //push는 오리지널을 변경하므로 concat사용(성능개선)
+            var _contents = Array.from(this.state.contents);
+            _contents.push({
               id: this.max_content_id,
               title: _title,
-              contents: _desc,
+              desc: _desc,
             });
+            // let result = this.state.contents.concat({
+            //   //push는 오리지널을 변경하므로 concat사용(성능개선)
+            //   id: this.max_content_id,
+            //   title: _title,
+            //   contents: _desc,
+            // });
             this.setState({
-              contents: result,
+              contents: _contents,
+              mode: "READ",
+              selected_content_id: this.max_content_id,
             });
             console.log("---콘텐츠확인---", this.state.contents);
             //add content to this.state.contents
@@ -77,19 +85,23 @@ class App extends Component {
       _article = (
         <UpdateContent
           data={_content}
-          onSubmit={function (_title, _desc) {
+          onSubmit={function (_id, _title, _desc) {
             console.log(_title, _desc);
-            this.max_content_id = this.max_content_id + 1;
             //배열일시 Array.from(this.state.contents);복사
             //객체일시 Object.assign({},대상객체); 객체복사
-            let result = this.state.contents.concat({
-              //push는 오리지널을 변경하므로 concat사용(성능개선)
-              id: this.max_content_id,
-              title: _title,
-              contents: _desc,
-            });
+            var _contents = Array.from(this.state.contents);
+            var i = 0;
+            while (i < _contents.length) {
+              if (_contents.id === _id) {
+                _contents[i] = { id: _id, title: _title, desc: _desc };
+                break;
+              }
+              i = i + 1;
+            }
+
             this.setState({
-              contents: result,
+              contents: _contents,
+              mode: "READ",
             });
             console.log("---콘텐츠확인---", this.state.contents);
             //add content to this.state.contents
@@ -127,6 +139,21 @@ class App extends Component {
           ></TOC>
           <Control
             onChangeMode={function (_mode) {
+              if (_mode === "DELETE") {
+                if (window.confirm("정말 삭제하시겠습니까?")) {
+                  var _contents = Array.from(this.state.contents);
+                  var i = 0;
+                  while (i < _contents.length) {
+                    if (_contents[i].id === this.state.selected_content_id) {
+                      _contents.splice(i, 1);
+                      break;
+                    }
+                    i = i + 1;
+                  }
+                  this.setState({ contents: _contents, mode: "WELCOME" });
+                  alert("삭제가 완료되었습니다.");
+                }
+              }
               this.setState({ mode: _mode });
             }.bind(this)}
           ></Control>
