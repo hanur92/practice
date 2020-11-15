@@ -11,10 +11,15 @@ class UpdateContent extends Component {
     this.inputFormHandler = this.inputFormHandler.bind(this);
   }
   inputFormHandler(e) {
+    console.log(this.state);
     e.preventDefault();
+    console.log("----", e.target.name);
+    console.log("----", [e.target.name]);
+    console.log("----", e.target.value);
     this.setState({
       [e.target.name]: e.target.value,
     });
+    console.log(this.state);
   }
   render() {
     console.log("UPDATE CONTENT RENDER");
@@ -61,4 +66,5 @@ class UpdateContent extends Component {
     );
   }
 }
+
 export default UpdateContent;
