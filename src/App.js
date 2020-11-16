@@ -26,18 +26,19 @@ class App extends Component {
   }
   //랜더보다 먼저 실행되며 초기화하는 코드
   getReadContent() {
-    let i = 0;
+    var i = 0;
     while (i < this.state.contents.length) {
-      let data = this.state.contents[i];
+      var data = this.state.contents[i];
       if (data.id === this.state.selected_content_id) {
         return data;
+        break;
       }
       i = i + 1;
     }
   }
   getContent() {
     console.log("APP RENDER");
-    let _title,
+    var _title,
       _desc,
       _article = null;
     if (this.state.mode === "WELCOME") {
@@ -91,7 +92,7 @@ class App extends Component {
             var _contents = Array.from(this.state.contents);
             var i = 0;
             while (i < _contents.length) {
-              if (_contents.id === _id) {
+              if (_contents[i].id === _id) {
                 _contents[i] = { id: _id, title: _title, desc: _desc };
                 break;
               }

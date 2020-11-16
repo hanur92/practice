@@ -4,15 +4,15 @@ class UpdateContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: this.props.data.id,
       title: this.props.data.title,
       desc: this.props.data.desc,
-      id: this.props.data.id,
     };
     this.inputFormHandler = this.inputFormHandler.bind(this);
   }
   inputFormHandler(e) {
     console.log(this.state);
-    e.preventDefault();
+    // e.preventDefault();
     console.log("----", e.target.name);
     console.log("----", [e.target.name]);
     console.log("----", e.target.value);
@@ -20,6 +20,7 @@ class UpdateContent extends Component {
       [e.target.name]: e.target.value,
     });
     console.log(this.state);
+    console.log(this.props.data);
   }
   render() {
     console.log("UPDATE CONTENT RENDER");
@@ -33,9 +34,9 @@ class UpdateContent extends Component {
           onSubmit={function (e) {
             e.preventDefault();
             this.props.onSubmit(
+              this.state.id,
               this.state.title,
-              this.state.desc,
-              this.state.id
+              this.state.desc
             );
             alert("submit TEXT");
           }.bind(this)}
