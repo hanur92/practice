@@ -1,5 +1,3 @@
-//색상을 랜덤하게 뽑아내는 함수
-
 export function getRandomColor() {
   const colors = [
     "#495057",
@@ -16,7 +14,10 @@ export function getRandomColor() {
     "#f59f00",
     "#f76707",
   ];
+
+  // 0 부터 12까지 랜덤 숫자
   const random = Math.floor(Math.random() * 13);
 
+  // 랜덤 색상 반환
   return colors[random];
 }

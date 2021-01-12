@@ -1,13 +1,13 @@
 import "./CSS/App.css";
-import Subject from "./components/Subject";
-import TOC from "./components/TOC";
-import ReadContent from "./components/ReadContent";
+import Subject from "./component/Subject";
+import TOC from "./component/TOC";
+import ReadContent from "./component/ReadContent";
 import React, { Component } from "react";
-import Control from "./components/Control";
-import CreateContent from "./components/CreateContent";
-import UpdateContent from "./components/UpdateContent";
+import Control from "./component/Control";
+import CreateContent from "./component/CreateContent";
+import UpdateContent from "./component/UpdateContent";
 
-class App extends Component {
+class App2 extends Component {
   constructor(props) {
     super(props);
     this.max_content_id = 3;
