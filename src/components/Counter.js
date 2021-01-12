@@ -30,15 +30,9 @@ Counter.propTypes = {
 Counter.defaultProps = {
   number: 0,
   color: "black",
-  onIncrement: () => {
-    console.warn("onIncNotDefined");
-  },
-  onDecrement: () => {
-    console.warn("onDecNotDefined");
-  },
-  onSetColor: () => {
-    console.warn("onSetColorNotDefined");
-  },
+  onIncrement: () => console.warn("onInc Not Defined"),
+  onDecrement: () => console.warn("onDec Not Defined"),
+  onSetColor: () => console.warn("onSetColor Not Defined"),
 };
 
 export default Counter;

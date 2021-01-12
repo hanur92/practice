@@ -7,9 +7,11 @@ const initialState = {
 const number = (state = initialState, action) => {
   switch (action.types) {
     case types.INCREMENT:
-      return state.number + 1;
+      return { number: state.number + 1 };
+
     case types.DECREMENT:
-      return state.number - 1;
+      return { number: state.number - 1 };
+
     default:
       return state;
   }

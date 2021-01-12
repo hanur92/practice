@@ -4,10 +4,12 @@ import CounterContainer from "../containers/CounterContainer";
 
 class App extends Component {
   render() {
+    console.log({ Counter });
     return (
       <div>
-        <CounterContainer></CounterContainer>
         <Counter />
+
+        <CounterContainer />
       </div>
     );
   }

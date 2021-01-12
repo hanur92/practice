@@ -16,7 +16,7 @@ import { combineReducers } from "redux";
     로 만들어집니다.
 */
 
-const reducer = combineReducers({
+const reducers = combineReducers({
   numberData: number,
   colorData: color,
 });
@@ -29,4 +29,4 @@ const reducer = combineReducers({
     기존 상태 값에 원하는 값을 덮어쓴 새로운 객체를 만들어서 반환해야합니다.
 */
 
-export default reducer;
+export default reducers;
