@@ -4,9 +4,8 @@ export const increment = () => ({
   type: types.INCREMENT,
 });
 
-export const decrement = (color) => ({
+export const decrement = () => ({
   type: types.DECREMENT,
-  color,
 });
 /*
     action 객체를 만드는 액션 생성자들을 선언합니다. (action creators)
@@ -14,6 +13,7 @@ export const decrement = (color) => ({
     scope 이슈와 관계 없이 편의상 사용되었습니다.
 */
 
-export const set_color = () => ({
+export const setColor = (color) => ({
   type: types.SET_COLOR,
+  color,
 });

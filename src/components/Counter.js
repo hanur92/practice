@@ -19,7 +19,7 @@ const Counter = ({ number, color, onIncrement, onDecrement, onSetColor }) => {
   );
 };
 
-Counter.prototype = {
+Counter.propTypes = {
   number: PropTypes.number,
   color: PropTypes.string,
   onIncrement: PropTypes.func,
