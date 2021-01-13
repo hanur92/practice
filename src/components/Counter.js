@@ -34,5 +34,4 @@ Counter.defaultProps = {
   onDecrement: () => console.warn("onDec Not Defined"),
   onSetColor: () => console.warn("onSetColor Not Defined"),
 };
-
 export default Counter;
