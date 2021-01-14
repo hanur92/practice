@@ -49,6 +49,19 @@ function counter(state = initialState, action) {
       return { counters: [...counters, { color: action.color, number: 0 }] };
     case types.REMOVE:
       return { counters: counters.slice(0, counters.length - 1) };
+    case types.INCREMENT:
+      return {
+        counters: [
+          ...counters.slice(0, action.index),
+          {
+            ...counters[action.index],
+            number: counters[action.index].number + 1,
+          },
+          ...counters.slice(action.index + 1, counters.length),
+        ],
+      };
+    case types.DECREMENT:
+      return { counters: [] };
     default:
       return state;
   }

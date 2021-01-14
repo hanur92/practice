@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Counter from "./Counter";
-import CounterContainer from "../containers/CounterContainer";
+import Counter from "../components/Counter";
+import CounterContainer from "./CounterContainer";
 
 class App extends Component {
   render() {
@@ -8,8 +8,7 @@ class App extends Component {
     return (
       <div>
         <Counter />
-
-        {/* <CounterContainer /> */}
+        <CounterContainer />
       </div>
     );
   }
