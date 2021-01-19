@@ -8,13 +8,12 @@ const CounterList = ({ counters, onSetColor, onIncrement, onDecrement }) => {
   const counterList = counters.map((counter, i) => {
     return (
       <Counter
+        key={i}
         index={i}
         onDecrement={onDecrement}
         onIncrement={onIncrement}
         onSetColor={onSetColor}
-      >
-        {...counter}
-      </Counter>
+      ></Counter>
     );
   });
 
