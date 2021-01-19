@@ -5,17 +5,16 @@ import PropTypes from "prop-types";
 import "../CSS/CounterList.css";
 
 const CounterList = ({ counters, onSetColor, onIncrement, onDecrement }) => {
-  const counterList = counters.map((counter, i) => {
-    return (
-      <Counter
-        key={i}
-        index={i}
-        onDecrement={onDecrement}
-        onIncrement={onIncrement}
-        onSetColor={onSetColor}
-      ></Counter>
-    );
-  });
+  const counterList = counters.map((counter, i) => (
+    <Counter
+      key={i}
+      index={i}
+      {...counter}
+      onDecrement={onDecrement}
+      onIncrement={onIncrement}
+      onSetColor={onSetColor}
+    ></Counter>
+  ));
 
   return <div className="CounterList">{counterList}</div>;
 };

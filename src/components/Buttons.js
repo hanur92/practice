@@ -15,18 +15,14 @@ const Buttons = ({ onCreate, onRemove }) => {
   );
 };
 
-Buttons.PropTypes = {
+Buttons.propTypes = {
   onCreate: PropTypes.func,
   onRemove: PropTypes.func,
 };
 
 Buttons.defaultProps = {
-  onCreate: () => {
-    console.warn("onCre not def");
-  },
-  onRemove: () => {
-    console.warn("onRem not def");
-  },
+  onCreate: () => console.warn("onCre not def"),
+  onRemove: () => console.warn("onRem not def"),
 };
 
 export default Buttons;

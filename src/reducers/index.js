@@ -43,7 +43,8 @@ const initialState = {
 };
 
 function counter(state = initialState, action) {
-  const counters = state.counters;
+  // const counters = state.counters;
+  const { counters } = state;
   switch (action.type) {
     case types.CREATE:
       return { counters: [...counters, { color: action.color, number: 0 }] };

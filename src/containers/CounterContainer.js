@@ -25,5 +25,3 @@ const CounterContainer = connect(
   mapStateToProps /*컴포넌트에 상태를 연결*/,
   mapDispatchToProps /*컴포넌트에 액션함수 연결*/
 )(Counter);
-
-export default CounterContainer;
