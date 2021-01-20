@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Buttons from "../components/Buttons";
 import CounterListContainer from "./CounterListContainer";
-
+import Counter from "../reducers/index";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 
@@ -15,6 +15,7 @@ class App extends Component {
           <Buttons onCreate={onCreate} onRemove={onRemove}></Buttons>
         </div>
         <CounterListContainer />
+        {/* <Counter></Counter> */}
       </div>
     );
   }

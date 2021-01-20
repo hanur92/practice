@@ -35,16 +35,61 @@ import * as types from "../actions/ActionTypes";
 
 const initialState = {
   counters: [
-    {
-      color: "black",
-      number: 0,
-    },
+    { color: "black", number: 0 },
+    { color: "black", number: 1 },
+    { color: "black", number: 2 },
+    { color: "black", number: 3 },
+    { color: "black", number: 4 },
+    { color: "black", number: 5 },
   ],
 };
 
 function counter(state = initialState, action) {
-  // const counters = state.counters;
-  const { counters } = state;
+  const counters = state.counters;
+  // const { counters } = state;
+  console.log({
+    //action.index = 5
+    counters: [
+      ...counters.slice(0, 5), //선택인덱스 직전까지 슬라이스
+      { ...counters[5], number: counters[5].number + 1 },
+      //
+      // ...counters.slice(6, counters.length),
+    ],
+  });
+  console.log({
+    counters: [
+      ...counters.slice(0, 5),
+      { ...counters[5], number: counters[5].number + 1 },
+    ],
+  });
+  console.log("0", {});
+  console.log("1", { counters });
+  console.log("2", { counters: counters });
+  console.log("3", { counters: [...counters] });
+  console.log("4", { counters: [...counters.slice(0, 5)] });
+  console.log("5", {
+    counters: [...counters.slice(0, 5), { ...counters[5] }],
+  });
+  console.log("6", {
+    counters: [
+      ...counters.slice(0, 5),
+      { ...counters[5], number: counters[5].number + 1 },
+    ],
+  });
+  console.log({
+    //action.index = 3
+    counters: [
+      ...counters.slice(0, 3), //선택인덱스 직전까지 자름
+      { ...counters[3], number: counters[3].number + 1 },
+      //목표인덱스를 잘라주고 숫자 1을 증가시켜줌
+      ...counters.slice(4, counters.length),
+      //목표인덱스 이후부터 counters배열의 끝(counters.length)까지 잘라줌
+    ],
+  });
+  //             {counters: [...counters.slice(0, action.index),{...counters[action.index],
+  // number: counters[action.index].number + 1,},...counters.slice(action.index + 1, counters.length)],
+  // };
+
   switch (action.type) {
     case types.CREATE:
       return { counters: [...counters, { color: action.color, number: 0 }] };
@@ -87,3 +132,4 @@ function counter(state = initialState, action) {
 }
 
 export default counter;
+//
