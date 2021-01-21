@@ -34,14 +34,7 @@
 import * as types from "../actions/ActionTypes";
 
 const initialState = {
-  counters: [
-    { color: "black", number: 0 },
-    { color: "black", number: 1 },
-    { color: "black", number: 2 },
-    { color: "black", number: 3 },
-    { color: "black", number: 4 },
-    { color: "black", number: 5 },
-  ],
+  counters: [{ color: "black", number: 0 }],
 };
 
 function counter(state = initialState, action) {
@@ -51,26 +44,26 @@ function counter(state = initialState, action) {
   //타겟인덱스 전으로 스프레드 후 슬라이스
   //타겟인덱스에 접근해서 color의 밸류를 action.color로 변경
   //타겟인덱스 후로 스프레드 후 슬라이스
-  console.log({
-    counters: [
-      ...counters.slice(0, 3),
-      { ...counters[3], color: "action.color" },
-      ...counters.slice(4, counters.length),
-    ],
-  });
+  // console.log({
+  //   counters: [
+  //     ...counters.slice(0, 3),
+  //     { ...counters[3], color: "action.color" },
+  //     ...counters.slice(4, counters.length),
+  //   ],
+  // });
 
   //decrement 구현해보기 (타겟인덱스는 3)
   //타겟인덱스 전으로 스프레드 후 슬라이스
   //타겟인덱스 추출 후 -1
   //타겟인덱스 후로 스프레드 후 슬라이스
 
-  console.log({
-    counters: [
-      ...counters.slice(0, 3),
-      { ...counters[3], number: counters[3].number - 1 },
-      ...counters.slice(4, counters.length - 1),
-    ],
-  });
+  // console.log({
+  //   counters: [
+  //     ...counters.slice(0, 3),
+  //     { ...counters[3], number: counters[3].number - 1 },
+  //     ...counters.slice(4, counters.length - 1),
+  //   ],
+  // });
   // const { counters } = state;
   // console.log({
   //   //action.index = 5
