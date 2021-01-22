@@ -1,3 +1,5 @@
+[##_Image|kage@chEmnL/btqUf06ZYMz/X6xknktwYhw6soDBkd3DGK/img.png|alignLeft|data-filename="jsimg.png" data-origin-width="225" data-origin-height="225" data-ke-mobilestyle="widthContent"|||_##]
+
 - #### **Immutable.JS**
 
 immutable.js는 자바스크립트 상에서 불변성의 데이터를 다루는 것을 도와준다.
@@ -144,3 +146,72 @@ console.log(user) //{ user: 'hanur', body: { weight: 65 } }
 ```
 
 - **Immutable JS**
+
+**\- Map**
+
+immutable에서 map은 객체 대신 사용되는 데이터 타입이다. (JS method 'map()'과는 다른 것).
+
+1 : 타겟 객체를 Map으로 감싸서 선언해준다.
+
+```js
+let Map = Immutable.Map;
+
+let data = Map({
+  name: "hanur",
+  age: "28",
+  sex: "male",
+  height: "174",
+  weight: "74",
+  dev: Map({
+    lang: "JavaScript",
+    frameW: "react",
+  }),
+});
+
+console.log(data); // Map data를 출력할 수 없음.
+console.log(data.name); // undefined
+```
+
+2 : 자바스크립트 객체로 변환해준다.
+
+```js
+data.toJS();
+//[object Object] {
+//  age: "28",
+//  dev: [object Object] {
+//    frameW: "react",
+//    lang: "JavaScript"
+//  },
+//  height: "174",
+//  name: "hanur",
+//  sex: "male",
+//  weight: "74"
+//}
+```
+
+3 : 값을 불러올 때.
+
+```js
+//일반객체
+data.get("name"); // hanur
+//중첩객체
+data.getIn(["dev", "lang"]); // JavaScript
+```
+
+4 : 값 설정할 때
+
+```js
+//일반객체
+let newData = data.set('name','han_ur')
+console.log(newData.get('name'))  //han_ur
+
+//중첩객체
+let newData = data.setIn(['dev','lang'],'JS')
+console.log(newData.get('name')) //JS
+
+//여러 개의 값 설정
+1.let newData = data.mergeIn(['dev'], { lang: 'js', frameW: 'REACT' });
+2.let newData = data.setIn(['dev','lang'],'js').setIn(['dev','frameW'],'REACT' });
+```
+
+**\- List**
