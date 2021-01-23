@@ -147,6 +147,8 @@ console.log(user) //{ user: 'hanur', body: { weight: 65 } }
 
 - **Immutable JS**
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/immutable/3.7.3/immutable.min.js"></script>
+
 **\- Map**
 
 immutable에서 map은 객체 대신 사용되는 데이터 타입이다. (JS method 'map()'과는 다른 것).
