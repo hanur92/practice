@@ -213,7 +213,78 @@ console.log(newData.get('name')) //JS
 
 //여러 개의 값 설정
 1.let newData = data.mergeIn(['dev'], { lang: 'js', frameW: 'REACT' });
-2.let newData = data.setIn(['dev','lang'],'js').setIn(['dev','frameW'],'REACT' });
+2.let newData = data.setIn(['dev','lang'],'js').setIn(['dev','frameW'],'REACT' );
 ```
 
 **\- List**
+List는 Immutable.js에서 배열 대신 사용되는 데이터 구조이다. 배열에서 사용되는 메소드인 map(), filter(), sort(), push(),pop() 들을 내장하고 있다.
+
+이들의 리턴값은 또 다른 List이다.
+
+1 : 새로운 List 생성
+
+```
+let List = Immutable.List;
+let list = List(['han','ur',['kang']])
+```
+
+2 : 객체들의 배열일 경우.
+
+```
+//일반배열 생성 (Map과 마찬가지로 일반 배열로 변환 가능)
+let List = Immutable.List;
+let list = List(['han','ur',['kang']])
+list.Immutable.fromJS();
+
+//원소가 객체인 배열
+let List = Immutable.List;
+let Map = Immutable.Map;
+let fromJS = Immutable.fromJS;
+
+1.let ImList = List([
+Map({name:'hanur'}),
+Map({age:'28'})
+]);
+
+2.let ImList = fromJS([
+{name:'hanur'},
+{age:'28'}
+])
+```
+
+3 : 값 읽어오기
+
+```
+let List = Immutable.List;
+let list = List(['han','ur',['kang']])
+
+list.get(index)
+list.get(0) //'han'
+```
+
+4 : 원소 수정/추가/제거/크기 가져오기
+
+```
+//일반배열 생성 (Map과 마찬가지로 일반 배열로 변환 가능)
+let List = Immutable.List;
+let list = List(['han','ur',['kang']])
+list.Immutable.fromJS();
+
+list.get(2) //['kang']
+
+//원소가 객체인 배열
+let List = Immutable.List;
+let Map = ImImmutable.Map;
+let fromJS = Immutable.fromJS;
+
+let list = List([
+Map({name:'hanur'}),
+Map({age:'28'})
+]);
+
+1.//.setIn([index, key],targetValue)
+	let newList = list.setIn([0, name],'Kang_han_ur')
+
+
+2.//.update(index ,item=>item.set(key,item.get(key) * targetValue))
+```
