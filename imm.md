@@ -147,13 +147,11 @@ console.log(user) //{ user: 'hanur', body: { weight: 65 } }
 
 - **Immutable JS**
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/immutable/3.7.3/immutable.min.js"></script>
-
 **\- Map**
 
 immutable에서 map은 객체 대신 사용되는 데이터 타입이다. (JS method 'map()'과는 다른 것).
 
-1 : 타겟 객체를 Map으로 감싸서 선언해준다.
+1 : 타겟 객체를 Map으로 감싸서 선언.
 
 ```js
 let Map = Immutable.Map;
@@ -174,7 +172,7 @@ console.log(data); // Map data를 출력할 수 없음.
 console.log(data.name); // undefined
 ```
 
-2 : 자바스크립트 객체로 변환해준다.
+2 : 자바스크립트 객체로 변환.
 
 ```js
 data.toJS();
@@ -213,24 +211,25 @@ console.log(newData.get('name')) //JS
 
 //여러 개의 값 설정
 1.let newData = data.mergeIn(['dev'], { lang: 'js', frameW: 'REACT' });
-2.let newData = data.setIn(['dev','lang'],'js').setIn(['dev','frameW'],'REACT' );
+2.let newData = data.setIn(['dev','lang'],'js').setIn(['dev','frameW'],'REACT' });
 ```
 
 **\- List**
+
 List는 Immutable.js에서 배열 대신 사용되는 데이터 구조이다. 배열에서 사용되는 메소드인 map(), filter(), sort(), push(),pop() 들을 내장하고 있다.
 
 이들의 리턴값은 또 다른 List이다.
 
 1 : 새로운 List 생성
 
-```
+```js
 let List = Immutable.List;
-let list = List(['han','ur',['kang']])
+let list = List(["han", "ur", ["kang"]]);
 ```
 
 2 : 객체들의 배열일 경우.
 
-```
+```js
 //일반배열 생성 (Map과 마찬가지로 일반 배열로 변환 가능)
 let List = Immutable.List;
 let list = List(['han','ur',['kang']])
@@ -254,23 +253,28 @@ Map({age:'28'})
 
 3 : 값 읽어오기
 
-```
+```js
 let List = Immutable.List;
-let list = List(['han','ur',['kang']])
+let list = List(["han", "ur", ["kang"]]);
 
-list.get(index)
-list.get(0) //'han'
+list.get(index);
+list.get(0); //'han'
 ```
 
 4 : 원소 수정/추가/제거/크기 가져오기
 
-```
+```js
+------아이템 업데이트하기------
+
 //일반배열 생성 (Map과 마찬가지로 일반 배열로 변환 가능)
 let List = Immutable.List;
 let list = List(['han','ur',['kang']])
-list.Immutable.fromJS();
+let fromJS = Immutable.fromJS;
+ console.log(list0.toJS())//["han", "ur", ["kang"]]
 
+//배열의 값 불러오기
 list.get(2) //['kang']
+
 
 //원소가 객체인 배열
 let List = Immutable.List;
@@ -279,12 +283,69 @@ let fromJS = Immutable.fromJS;
 
 let list = List([
 Map({name:'hanur'}),
-Map({age:'28'})
+Map({age:28,weight:0})
 ]);
 
-1.//.setIn([index, key],targetValue)
-	let newList = list.setIn([0, name],'Kang_han_ur')
+//배열인지 확인
+console.log(Array.isArray(list.toJS()))  //true
 
+//0번째 인덱스 값 확인
+console.log(list.toJS()[0]) //{name:'hanur'}
+
+//0번째 인덱스의 'name'키를 가진 value 확인
+console.log(list.getIn([0, 'name'])) //'hanur'
+
+
+
+let list2 = fromJS([
+{name:'hanur'},
+{age:'28'}
+])
+
+console.log(list2.toJS())
+//[[object Object] {  name: "hanur"
+//}, [object Object] {
+//  age: "28"
+//}]
+
+
+1.//.setIn([index, key],targetValue)
+	let newList = list.setIn([0, 'name'],'Kang_han_ur')
+    //0번째 인덱스의 name키를 가진 value를 두번째 파라미터로 변환
+    console.log(newList.toJS()) //[{name:'Kang_han_ur'},{age:28}]
 
 2.//.update(index ,item=>item.set(key,item.get(key) * targetValue))
+	//값을 업데이트 하되, 기존 값을 참조해야 할 때.
+	let newList = list.update(1, //list의 첫번째 인덱스의 원소중
+  	item => item.set('weight' //weight키를 가지고 있는 벨류를 업데이트한다.
+	, item.get('age') + 50) //age키의 벨류를 가지고 와서 거기에 50을 더하여 weight의 벨류를 업데이트
+    )
+   //= let newList = list.setIn([1, 'weight'], list.getIn([1, 'age']) + 50);
+
+	console.log(newList.toJS()) //[{name:'hanur'},{age:28,weight:78}]
+
+3.//만약 내부 값이 아니라 아이템 자체를 수정하려면,
+	console.log(list.set(0, Map({NAME:'kangHanUr'})).toJS())
+
+	//[[object Object] {
+	//  NAME: "kangHanUr"
+	//}, [object Object] {
+	//  age: 28,
+	//  weight: 0
+	//}]
+
+
+------아이템 추가하기------
+list.push(Map({key:'value'})) //맨 뒤 추가. immutable하다.(기존 배열 수정 X)
+list.unshift(Map({key:'value'})) //맨 앞 추가
+
+------아이템 제거하기------
+list.delete(1) //인덱스1인 아이템 삭제
+list.pop() //맨 뒤 아이템 삭제
+
+----아이템 크기 가져오기----
+console.log(list.size) //2
+console.log(list.isEmpty()) //false
 ```
+
+**\- 리덕스에서 사용하기**
