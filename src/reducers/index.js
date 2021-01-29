@@ -32,13 +32,19 @@
 // export default reducers;
 
 import * as types from "../actions/ActionTypes";
+import { Map, List } from "immutable";
 
-const initialState = {
-  counters: [{ color: "black", number: 0 }],
-};
+const initialState = Map({
+  counters: List([
+    Map({
+      color: "black",
+      number: 0,
+    }),
+  ]),
+});
 
 function counter(state = initialState, action) {
-  const counters = state.counters;
+  const counters = state.get("counters");
 
   //setColor구현해보기 (타겟인덱스는 3)
   //타겟인덱스 전으로 스프레드 후 슬라이스
@@ -111,39 +117,69 @@ function counter(state = initialState, action) {
 
   switch (action.type) {
     case types.CREATE:
-      return { counters: [...counters, { color: action.color, number: 0 }] };
+      return state.set(
+        "counters",
+        counters.push(
+          Map({
+            color: action.color,
+            number: 0,
+          })
+        )
+      );
+    // {
+    //   counters: [...counters, { color: action.color, number: 0 }],
+    // };
     case types.REMOVE:
-      return { counters: counters.slice(0, counters.length - 1) };
+      return state.set("counters", counters.pop());
+    // { counters: counters.slice(0, counters.length - 1) };
     case types.INCREMENT:
-      return {
-        counters: [
-          ...counters.slice(0, action.index),
-          {
-            ...counters[action.index],
-            number: counters[action.index].number + 1,
-          },
-          ...counters.slice(action.index + 1, counters.length),
-        ],
-      };
+      return state.set(
+        "counters",
+        counters.update(action.index, (counter) =>
+          counter.set("number", counter.get("number") + 1)
+        )
+      );
+    // {
+    //   counters: [
+    //     ...counters.slice(0, action.index),
+    //     {
+    //       ...counters[action.index],
+    //       number: counters[action.index].number + 1,
+    //     },
+    //     ...counters.slice(action.index + 1, counters.length),
+    //   ],
+    // };
     case types.DECREMENT:
-      return {
-        counters: [
-          ...counters.slice(0, action.index),
-          {
-            ...counters[action.index],
-            number: counters[action.index].number - 1,
-          },
-          ...counters.slice(action.index + 1, counters.length),
-        ],
-      };
+      return state.set(
+        "counters",
+        counters.update(action.index, (counter) =>
+          counter.set("number", counter.get("number") - 1)
+        )
+      );
+    // {
+    //   counters: [
+    //     ...counters.slice(0, action.index),
+    //     {
+    //       ...counters[action.index],
+    //       number: counters[action.index].number - 1,
+    //     },
+    //     ...counters.slice(action.index + 1, counters.length),
+    //   ],
+    // };
     case types.SET_COLOR:
-      return {
-        counters: [
-          ...counters.slice(0, action.index),
-          { ...counters[action.index], color: action.color },
-          ...counters.slice(action.index + 1, counters.length),
-        ],
-      };
+      return state.set(
+        "counters",
+        counters.update(action.index, (counter) =>
+          counter.set("color", action.color)
+        )
+      );
+    // {
+    //   counters: [
+    //     ...counters.slice(0, action.index),
+    //     { ...counters[action.index], color: action.color },
+    //     ...counters.slice(action.index + 1, counters.length),
+    //   ],
+    // };
 
     default:
       return state;

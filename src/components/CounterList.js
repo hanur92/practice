@@ -1,7 +1,7 @@
 import React from "react";
 import Counter from "./Counter";
 import PropTypes from "prop-types";
-
+import { Map, List } from "immutable";
 import "../CSS/CounterList.css";
 
 const CounterList = ({ counters, onSetColor, onIncrement, onDecrement }) => {
@@ -9,7 +9,7 @@ const CounterList = ({ counters, onSetColor, onIncrement, onDecrement }) => {
     <Counter
       key={i}
       index={i}
-      {...counter}
+      {...counter.toJS()}
       onDecrement={onDecrement}
       onIncrement={onIncrement}
       onSetColor={onSetColor}
@@ -20,12 +20,13 @@ const CounterList = ({ counters, onSetColor, onIncrement, onDecrement }) => {
 };
 
 CounterList.propTypes = {
-  counters: PropTypes.arrayOf(
-    PropTypes.shape({
-      color: PropTypes.string,
-      number: PropTypes.number,
-    })
-  ),
+  // counters: PropTypes.arrayOf(
+  //   PropTypes.shape({
+  //     color: PropTypes.string,
+  //     number: PropTypes.number,
+  //   })
+  // ),
+  counters: PropTypes.instanceOf(List),
   onSetColor: PropTypes.func,
   onIncrement: PropTypes.func,
   onDecrement: PropTypes.func,
