@@ -2,6 +2,7 @@
 //!사용예시
 
 import { create } from "../actions";
+import { DECREMENT, INCREMENT } from "../actions/ActionTypes";
 
 //!기존 리덕스 액션 생성
 
@@ -35,3 +36,17 @@ setColor({index: 5, color: '#fff'})
     }
 }
 */
+
+//!switch문 대신 handleAction 
+//?쓰는 이유 : reducer함수로 scope설정이 되어 case내에 중복된 선언이 있을 경우 에러 발생
+const initialState = {counter:0}
+const reducer = handleAction({
+  INCREMENT: (state,action)=>({
+    //? 첫번째 파라미터 = 액션에 따라 실행 할 함수들을 가지고있는 객체
+    //? 두번째 파라미터 = 상태의 기본 값 (initialState)
+    counter:state.counter+action.payload
+  }),
+  DECREMENT:(state,action )=>({
+    counter: state.counter - action.payload
+  }),initState = initialState
+})
