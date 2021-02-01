@@ -11,11 +11,10 @@ const mapStateToProps = (state) => ({
     해당 액션을 dispatch 하는 함수를 만들은 후, 이를 props 로 연결해줍니다.
     컴포넌트에 액션함수 연결*/
 const mapDispatchToProps = (dispatch) => ({
-  onIncrement: () => dispatch(actions.increment()),
-  onDecrement: () => dispatch(actions.decrement()),
-  onSetColor: () => {
-    const color = getRandomColor();
-    dispatch(actions.setColor(color));
+  onIncrement: (index) => dispatch(actions.increment(index)),
+  onDecrement: (index) => dispatch(actions.decrement(index)),
+  onSetColor: (index) => {
+    dispatch(actions.setColor({ index: index, color: getRandomColor() }));
   },
 });
 

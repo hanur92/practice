@@ -1,7 +1,8 @@
 import CounterList from "../components/CounterList";
-import * as actions from "../actions";
+import * as actionsBefore from "../actions";
 import { connect } from "react-redux";
 import { getRandomColor } from "../utils";
+import * as actions from "../modules";
 
 // store 안의 state 값을 props 로 연결
 const mapStateToProps = (state) => ({
@@ -19,7 +20,7 @@ const mapDispatchToProps = (dispatch) => ({
   onDecrement: (index) => dispatch(actions.decrement(index)),
   onSetColor: (index) => {
     const color = getRandomColor();
-    dispatch(actions.setColor({ index, color }));
+    dispatch(actions.set_color({ index, color }));
   },
 });
 
