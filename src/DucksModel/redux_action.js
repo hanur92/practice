@@ -2,10 +2,9 @@
 //!사용예시
 
 import { create } from "../actions";
-import { DECREMENT, INCREMENT } from "../actions/ActionTypes";
+import * as Types from "../actions/ActionTypes";
 
 //!기존 리덕스 액션 생성
-
 export const increment = (index) => ({
   type: Types.INCREMENT,
   index,
