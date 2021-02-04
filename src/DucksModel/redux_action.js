@@ -1,6 +1,7 @@
 //!redux_action? redux에서 action 생성시 번거로움을 줄여준다.
 //!사용예시
 
+import { handleAction,combineActions } from "redux-actions";
 import { create } from "../actions";
 import * as Types from "../actions/ActionTypes";
 
@@ -49,3 +50,21 @@ const reducer = handleAction({
     counter: state.counter - action.payload
   }),initState = initialState
 })
+
+const { increment, decrement } = createActions({
+  INCREMENT: amount => ({ amount }),
+  DECREMENT: amount => ({ amount: -amount })
+});
+
+ console.log(increment)
+ console.log(decrement)
+
+ const reducer = handleActions(
+  {
+[    combineActions(increment,decrement)]:(state,
+  {
+    payload: {amount}
+  }
+  )
+  }
+)
