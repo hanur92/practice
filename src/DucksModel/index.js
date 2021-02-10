@@ -24,9 +24,10 @@ const reducer = handleActions(
   { counter: 10 }
 );
 
+console.log(increment);
 console.log(increment());
 console.log(decrement());
-
+console.log(reducer());
 // expect(reducer({ counter: 5 }, increment(5))).to.deep.equal({ counter: 10 });
 // expect(reducer({ counter: 5 }, decrement(5))).to.deep.equal({ counter: 0 });
 // expect(reducer({ counter: 5 }, { type: "NOT_TYPE", payload: 1000 })).to.equal({
